@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Counter App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+
+
+        /* Center the counter on the page */
+        #counter {
+            text-align: center;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 9em;
+        }
+        #plus{
+            font-size: 9em;
+            cursor: pointer;
+            user-select: none;
+            float: right;
+        }
+        #minus{
+            font-size: 9em;
+            cursor: pointer;
+            user-select: none;
+          
+        }
+        div{
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+<h1 id="counter" onclick='    const increment = prompt("Enter the number to increment by:"); if(!isNaN(increment) && increment !== ""){ counter.innerHTML = parseInt(counter.innerHTML) + parseInt(increment);}'>0</h1>
+    <div>
+        <span id="minus" onclick=' const counter = document.getElementById("counter"); counter.innerHTML = parseInt(counter.innerHTML) - 1;'>[-]</span>
+        <span id="plus" onclick=' const counter = document.getElementById("counter"); counter.innerHTML = parseInt(counter.innerHTML) + 1;'>[+]</span>    
+    </div>
+    
+   <script>
+        // Get the counter element
+        const counter = document.getElementById("counter");
+
+        // Attach event listener to the enter key
+        document.addEventListener("keydown", event => {
+            if (event.key === "Enter") {
+                // Increment the counter by 1
+                counter.innerHTML = parseInt(counter.innerHTML) + 1;
+            }
+            if (event.key === "+") {
+                // Get the next number entered
+                const increment = prompt("Enter the number to increment by:");
+
+                // Increment the counter by the entered number
+                if(!isNaN(increment)  && increment !== "" ){
+                    counter.innerHTML = parseInt(counter.innerHTML) + parseInt(increment);
+                }
+                
+            }
+            if (event.key === "-") {
+                // Get the next number entered
+                const decrease = prompt("Enter the number to decrease by:");
+               // console.log((decrease===""), !isNaN(decrease)  );
+                
+                // decrease the counter by the entered number
+                if(!isNaN(decrease) && decrease !== "" ){
+                    counter.innerHTML = parseInt(counter.innerHTML) - parseInt(decrease);
+                }
+
+            }
+            if (event.key === "c") {
+                // Copy the counter value to the clipboard
+                const textArea = document.createElement("textarea");
+                textArea.value = counter.innerHTML;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
